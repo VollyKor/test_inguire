@@ -26,7 +26,7 @@ export default function Header(): JSX.Element {
             Main
           </NavLink>
           <NavLink
-            to="/post/:userId"
+            to="/posts/"
             style={linkStyle}
             activeStyle={{ backgroundColor: 'green' }}
           >

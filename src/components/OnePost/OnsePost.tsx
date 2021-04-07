@@ -1,3 +1,7 @@
 export default function OnePost(): JSX.Element {
-  return <div>OnePost</div>;
+  return (
+    <>
+      <div> OnePost</div>
+    </>
+  );
 }

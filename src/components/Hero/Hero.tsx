@@ -1,7 +1,9 @@
+import AddPostForm from '../AddPostForm/AddPostForm';
+
 export default function Hero(): JSX.Element {
   return (
-    <div>
-      <div>форма добавления поста</div>
+    <div style={{ minHeight: '300px', backgroundColor: 'yellowgreen' }}>
+      <AddPostForm />
     </div>
   );
 }

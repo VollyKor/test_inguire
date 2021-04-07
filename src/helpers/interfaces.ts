@@ -19,7 +19,15 @@ export interface IpostWithComments extends Ipost {
   comments: Icomments;
 }
 
-export interface IaddCommnet {
+export interface IaddComment {
   postId: number;
   body: string;
+}
+
+export interface Istate {
+  posts: Ipost[];
+  comments: IaddComment[];
+  isFetching: boolean;
+  isLoading: boolean;
+  error: any;
 }

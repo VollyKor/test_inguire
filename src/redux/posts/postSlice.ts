@@ -1,6 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable no-param-reassign */
+// We can disable this rule becouse Redux useing Immer
 
-const initialState = {
+import { createSlice } from '@reduxjs/toolkit';
+import { Istate } from 'helpers/interfaces';
+import { postsOperations } from 'redux/posts';
+
+const { getPosts } = postsOperations;
+
+const initialState: Istate = {
   posts: [],
   comments: [],
   isLoading: false,
@@ -13,8 +20,8 @@ const postSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase('case', (state, action) => {
-      console.log(state, action);
+    builder.addCase(getPosts.fulfilled, (state: Istate, { payload }) => {
+      state.posts = payload;
     });
   },
 });
