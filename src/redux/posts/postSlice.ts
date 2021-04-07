@@ -1,11 +1,15 @@
 /* eslint-disable no-param-reassign */
-// We can disable this rule becouse Redux useing Immer
-
+// We can disable this rule becouse Redux using Immer
 import { createSlice } from '@reduxjs/toolkit';
 import { Istate } from 'helpers/interfaces';
 import { postsOperations } from 'redux/posts';
 
-const { getPosts } = postsOperations;
+const {
+  fetchPosts,
+  fetchAddPost,
+  fetchUpdatePost,
+  fetchDeletePost,
+} = postsOperations;
 
 const initialState: Istate = {
   posts: [],
@@ -18,11 +22,73 @@ const initialState: Istate = {
 const postSlice = createSlice({
   name: 'posts',
   initialState,
-  reducers: {},
+  reducers: {
+    // [postsActions.getPostById.toString()]: (state: Istate, { payload: id }) => {
+    //   const postToFind = state.posts.filter(e => e.id === id);
+    //   return
+    // },
+  },
   extraReducers: builder => {
-    builder.addCase(getPosts.fulfilled, (state: Istate, { payload }) => {
-      state.posts = payload;
-    });
+    builder
+      // Get Posts
+      // ======================================
+      .addCase(fetchPosts.pending, (state: Istate) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchPosts.fulfilled, (state: Istate, { payload }) => {
+        state.isLoading = false;
+        state.posts = payload;
+      })
+      .addCase(fetchPosts.rejected, (state: Istate, { payload }) => {
+        console.log(payload);
+        state.isLoading = false;
+        state.isLoading = true;
+      })
+      // Add Post
+      // ==========================================
+      .addCase(fetchAddPost.pending, (state: Istate) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAddPost.fulfilled, (state: Istate, { payload }) => {
+        state.posts.push(payload);
+      })
+      .addCase(fetchAddPost.rejected, (state: Istate, { payload }) => {
+        console.log(payload);
+        state.isLoading = false;
+      })
+      // Update Post
+      // ==========================================
+      .addCase(fetchUpdatePost.pending, (state: Istate) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchUpdatePost.fulfilled, (state: Istate, { payload }) => {
+        const newPostsArray = state.posts.map(e => {
+          if (e.id === payload.id) {
+            return payload;
+          }
+          return e;
+        });
+        state.posts = newPostsArray;
+      })
+      .addCase(fetchUpdatePost.rejected, (state: Istate, { payload }) => {
+        console.log(payload);
+        state.isLoading = false;
+      })
+      // Delete Post
+      // ==========================================
+      .addCase(fetchDeletePost.pending, (state: Istate) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchDeletePost.fulfilled, (state: Istate, { payload: id }) => {
+        console.log('slice', id);
+
+        const newPostsArray = state.posts.filter(e => e.id !== id);
+        state.posts = newPostsArray;
+      })
+      .addCase(fetchDeletePost.rejected, (state: Istate, { payload }) => {
+        console.log(payload);
+        state.isLoading = false;
+      });
   },
 });
 

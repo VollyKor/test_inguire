@@ -8,7 +8,7 @@ export interface InewPost {
 }
 
 export interface Ipost extends InewPost {
-  id: number;
+  id: number | string;
 }
 
 export interface Icomments {
@@ -31,3 +31,5 @@ export interface Istate {
   isLoading: boolean;
   error: any;
 }
+
+export type Tid = string | number;

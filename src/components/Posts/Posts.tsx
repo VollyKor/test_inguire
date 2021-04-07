@@ -1,10 +1,16 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Ipost, Tid } from 'helpers/interfaces';
 import { getPosts } from '../../redux/posts/posts-selectors';
-import { getPosts as fetchPosts } from '../../redux/posts/posts-operations';
+import {
+  fetchDeletePost,
+  fetchPosts,
+} from '../../redux/posts/posts-operations';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import OnePost from '../OnePost/OnsePost';
 
-export default function Header(): JSX.Element {
+export default function Posts(): JSX.Element {
+  const [isModalshown, setisModalshown] = useState(false);
+
   const dispatch = useAppDispatch();
   const posts = useAppSelector(getPosts);
 
@@ -12,15 +18,25 @@ export default function Header(): JSX.Element {
     dispatch(fetchPosts());
   }, [dispatch]);
 
+  function handleUpdate(post: Ipost): void {
+    console.log(post.id);
+
+    // dispatch(fetchUpdatePost(id.toString()));
+  }
+  function handleDelete(id: Tid) {
+    console.log(id);
+    dispatch(fetchDeletePost(id.toString()));
+  }
+  // function handleaAdComment(arguments) {
+  //   // body
+  // }
+
   return (
     <>
       <ul>
         {posts.map(e => (
           <li key={e.id}>
-            <Link to={`/posts/${e.id}`}>
-              <h2>{e.title}</h2>
-              <p>{e.body}</p>
-            </Link>
+            <OnePost PostObj={e} />
           </li>
         ))}
       </ul>

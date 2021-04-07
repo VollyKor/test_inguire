@@ -1,4 +1,4 @@
-import AddPostForm from '../AddPostForm/AddPostForm';
+import AddPostForm from '../Forms/AddPostForm';
 
 export default function Hero(): JSX.Element {
   return (
