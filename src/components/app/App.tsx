@@ -1,10 +1,9 @@
-// import {Suspense} from 'react'
+import Container from 'components/Container/Container';
 import { Switch, Route } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../Hero/Hero';
 import NavBar from '../NavBar/NavBar';
 import Posts from '../Posts/Posts';
-// import Footer from '../Footer/Footer';
+// import s from './App.module.css';
 
 // React.FunctionComponent<Props> = (props: Props) => (
 // const Component: React.SFC<Props> = (props: Props) => (
@@ -12,7 +11,7 @@ import Posts from '../Posts/Posts';
 function App(): JSX.Element {
   return (
     // Suspense
-    <>
+    <Container>
       <NavBar />
       <Switch>
         <Route path="/" exact>
@@ -23,8 +22,7 @@ function App(): JSX.Element {
           <div>Another Page</div>
         </Route>
       </Switch>
-      {/* <Footer /> */}
-    </>
+    </Container>
   );
 }
 

@@ -23,8 +23,8 @@ export default function Modal({ onClose, children }: Props) {
       tabIndex={0}
       className={s.backdrop}
       onClick={onBackdropClick}
-      onKeyDown={e => {
-        console.log(e);
+      onKeyDown={() => {
+        console.log();
       }}
     >
       <div className={s.wrapper}>

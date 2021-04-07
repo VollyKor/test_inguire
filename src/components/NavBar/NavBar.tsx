@@ -1,35 +1,15 @@
 import { NavLink } from 'react-router-dom';
+import s from './NavBar.module.css';
 
-const linkStyle = {
-  display: 'inline-block',
-  padding: '10px',
-  marginRight: '15px',
-  borderRadius: '4px',
-  color: 'white',
-  textDecoration: 'none',
-  margin: '0px',
-};
-
-export default function Header(): JSX.Element {
+export default function NavBar(): JSX.Element {
   return (
     <>
-      <header
-        style={{ backgroundColor: 'grey', minHeight: '50px', padding: '15px' }}
-      >
-        <nav>
-          <NavLink
-            to="/"
-            style={linkStyle}
-            activeStyle={{ backgroundColor: 'green' }}
-            exact
-          >
+      <header className={s.header}>
+        <nav className={s.nav}>
+          <NavLink to="/" className={s.link} activeClassName={s.active} exact>
             Main
           </NavLink>
-          <NavLink
-            to="/posts/"
-            style={linkStyle}
-            activeStyle={{ backgroundColor: 'green' }}
-          >
+          <NavLink to="/posts/" className={s.link} activeClassName={s.active}>
             Post
           </NavLink>
         </nav>

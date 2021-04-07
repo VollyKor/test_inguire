@@ -43,7 +43,7 @@ export const addPost = (post: InewPost): Promise<Ipost> =>
 // =====================================================
 export const updatePost = async (post: Ipost): Promise<Ipost> => {
   try {
-    const res = await req.patch(`/posts/${post.id}`);
+    const res = await req.put(`/posts/${post.id}`);
     return res.data;
   } catch (e) {
     throw new Error(e.message);

@@ -7,12 +7,11 @@ import Comments from '../Comments/Comments';
 
 interface Iprops {
   post: Ipost;
-  handleUpdate: (postobj: Ipost) => void;
   handleDelete: (id: Tid) => void;
 }
 
 export default function SinglePost(props: Iprops): JSX.Element {
-  const { post, handleUpdate, handleDelete } = props;
+  const { post, handleDelete } = props;
 
   const [isAddCommentFormShown, setIsAddCommentFormShown] = useState(false);
   const [isCommentsShown, setIsCommentsShown] = useState(false);
@@ -31,7 +30,6 @@ export default function SinglePost(props: Iprops): JSX.Element {
           <button
             type="button"
             onClick={() => {
-              handleUpdate(post);
               setIsModalShown(!isModalShown);
             }}
           >
@@ -59,12 +57,17 @@ export default function SinglePost(props: Iprops): JSX.Element {
             {isAddCommentFormShown ? 'Close form' : 'Add Comment'}
           </button>
         </div>
+
         {isAddCommentFormShown && <AddCommentsForm postId={post.id} />}
         {isCommentsShown && <Comments postId={post.id} />}
       </div>
+
       {isModalShown && (
         <Modal onClose={() => setIsModalShown(!isModalShown)}>
-          <UpdatePostForm />
+          <UpdatePostForm
+            postObj={post}
+            onClose={() => setIsModalShown(!isModalShown)}
+          />
         </Modal>
       )}
     </>

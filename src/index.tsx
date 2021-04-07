@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import PostStore from './redux/store';
+import './index.css';
 
 import App from './components/app/App';
 import mainTheme from './styles/theme';

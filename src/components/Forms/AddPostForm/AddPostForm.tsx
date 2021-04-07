@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form';
 // import * as yup from 'yup';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { InewPost, Ipost } from '../../helpers/interfaces';
-import { fetchAddPost as addNewPost } from '../../redux/posts/posts-operations';
-import { useAppDispatch } from '../../redux/hooks';
+import s from './AddPostForm.module.css';
+import { InewPost, Ipost } from '../../../helpers/interfaces';
+import { fetchAddPost as addNewPost } from '../../../redux/posts/posts-operations';
+import { useAppDispatch } from '../../../redux/hooks';
 
 export default function AddPostForm(): JSX.Element {
   const [isErrorShown, setIsErrorShown] = useState(false);
@@ -32,6 +33,9 @@ export default function AddPostForm(): JSX.Element {
   function onSubmit(data: InewPost) {
     if (data.title.length < 3 || data.title.length < 3) {
       setIsErrorShown(true);
+      setTimeout(() => {
+        setIsErrorShown(false);
+      }, 3000);
       return;
     }
     const newPost: Ipost = {
@@ -40,30 +44,32 @@ export default function AddPostForm(): JSX.Element {
     };
 
     dispatch(addNewPost(newPost));
-    console.log('submit', data);
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} style={{ padding: '15px' }}>
-      <label
-        htmlFor={titleId}
-        style={{ display: 'block', marginBottom: '15px' }}
-      >
-        <span style={{ display: 'block' }}>{titleId}</span>
-        <input id={titleId} {...register(titleId)} type="text" />
+    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor={titleId} className={s.label}>
+        <span className={s.text}>Title</span>
+        <input
+          autoComplete="off"
+          className={s.input}
+          id={titleId}
+          {...register(titleId)}
+          type="text"
+        />
         {/* <p>{errors.title?.message}</p> */}
       </label>
-      <label htmlFor={bodiId} style={{ display: 'block' }}>
-        <span style={{ display: 'block' }}>{bodiId}</span>
-        <textarea
-          id={bodiId}
-          {...register(bodiId)}
-          style={{ resize: 'none' }}
-        />
+      <label className={s.label} htmlFor={bodiId}>
+        <span className={s.text}>Body</span>
+        <textarea id={bodiId} {...register(bodiId)} className={s.textarea} />
         {/* <p>{errors.body?.message}</p> */}
       </label>
-      <button type="submit">Add post</button>
-      {isErrorShown && <p>Error</p>}
+      <button className={s.button} type="submit">
+        Add post
+      </button>
+      {isErrorShown && (
+        <p className="error">Input more than 3 symbols in each field</p>
+      )}
     </form>
   );
 }

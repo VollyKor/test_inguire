@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Ipost, Tid } from 'helpers/interfaces';
+import { Tid } from 'helpers/interfaces';
 import { getPosts } from '../../redux/posts/posts-selectors';
 import {
   fetchDeletePost,
@@ -16,29 +16,16 @@ export default function Posts(): JSX.Element {
     dispatch(fetchPosts());
   }, [dispatch]);
 
-  function handleUpdate(post: Ipost): void {
-    console.log(post.id);
-
-    // dispatch(fetchUpdatePost(id.toString()));
-  }
   function handleDelete(id: Tid) {
     console.log(id);
     dispatch(fetchDeletePost(id.toString()));
   }
-  // function handleaAdComment(arguments) {
-  //   // body
-  // }
-
   return (
     <>
       <ul style={{ listStyle: 'none' }}>
         {posts.map(e => (
           <li key={e.id}>
-            <OnePost
-              post={e}
-              handleUpdate={handleUpdate}
-              handleDelete={handleDelete}
-            />
+            <OnePost post={e} handleDelete={handleDelete} />
           </li>
         ))}
       </ul>

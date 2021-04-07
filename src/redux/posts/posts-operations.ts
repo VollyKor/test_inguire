@@ -42,7 +42,7 @@ export const fetchUpdatePost = createAsyncThunk(
     try {
       const updatedPost = await req.updatePost(updatedPostObj);
       console.log('post-updated', updatedPost);
-      return updatedPost;
+      return updatedPostObj;
     } catch (error) {
       throw error.message;
     }
