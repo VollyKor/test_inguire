@@ -1,12 +1,21 @@
-import { IaddComment, Ipost, Istate } from '../../helpers/interfaces';
+import {
+  IaddComment,
+  Icomment,
+  Ipost,
+  Istate,
+  Tid,
+} from '../../helpers/interfaces';
 
 export const getPosts = (state: Istate): Ipost[] => state.posts;
 export const getComments = (state: Istate): IaddComment[] => state.comments;
 
-export const getPostById = (
-  postid: string | number,
+export const getCommentPostById = (
+  postid: Tid,
   state: Istate,
-): Ipost | undefined => {
-  const post = state.posts.find(e => e.id === postid);
-  return post;
+): Icomment[] | undefined => {
+  const comments = state.comments.filter(e => e.postId === postid);
+  if (comments) {
+    return comments;
+  }
+  return undefined;
 };

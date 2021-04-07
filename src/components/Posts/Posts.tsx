@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Ipost, Tid } from 'helpers/interfaces';
 import { getPosts } from '../../redux/posts/posts-selectors';
 import {
@@ -6,11 +6,9 @@ import {
   fetchPosts,
 } from '../../redux/posts/posts-operations';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import OnePost from '../OnePost/OnsePost';
+import OnePost from '../OnePost/SinglePost';
 
 export default function Posts(): JSX.Element {
-  const [isModalshown, setisModalshown] = useState(false);
-
   const dispatch = useAppDispatch();
   const posts = useAppSelector(getPosts);
 
@@ -33,10 +31,14 @@ export default function Posts(): JSX.Element {
 
   return (
     <>
-      <ul>
+      <ul style={{ listStyle: 'none' }}>
         {posts.map(e => (
           <li key={e.id}>
-            <OnePost PostObj={e} />
+            <OnePost
+              post={e}
+              handleUpdate={handleUpdate}
+              handleDelete={handleDelete}
+            />
           </li>
         ))}
       </ul>

@@ -3,6 +3,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Istate } from 'helpers/interfaces';
 import { postsOperations } from 'redux/posts';
+import { fetchAddComment, fetchPostById } from './posts-operations';
 
 const {
   fetchPosts,
@@ -86,6 +87,30 @@ const postSlice = createSlice({
         state.posts = newPostsArray;
       })
       .addCase(fetchDeletePost.rejected, (state: Istate, { payload }) => {
+        console.log(payload);
+        state.isLoading = false;
+      })
+      // add Comments
+      // ===============================================
+      .addCase(fetchAddComment.pending, (state: Istate) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAddComment.fulfilled, (state: Istate, { payload }) => {
+        state.comments.push(payload);
+      })
+      .addCase(fetchAddComment.rejected, (state: Istate, { payload }) => {
+        console.log(payload);
+        state.isLoading = false;
+      })
+      // get Comments by Id
+      // ===========================================
+      .addCase(fetchPostById.pending, (state: Istate) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchPostById.fulfilled, (state: Istate, { payload }) => {
+        state.comments = payload.comments;
+      })
+      .addCase(fetchPostById.rejected, (state: Istate, { payload }) => {
         console.log(payload);
         state.isLoading = false;
       });

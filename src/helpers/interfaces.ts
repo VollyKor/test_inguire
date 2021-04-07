@@ -11,22 +11,22 @@ export interface Ipost extends InewPost {
   id: number | string;
 }
 
-export interface Icomments {
-  body: string;
-}
-
 export interface IpostWithComments extends Ipost {
-  comments: Icomments;
+  comments: Icomment[];
 }
 
 export interface IaddComment {
-  postId: number;
+  postId: Tid;
   body: string;
+}
+
+export interface Icomment extends IaddComment {
+  id: Tid;
 }
 
 export interface Istate {
   posts: Ipost[];
-  comments: IaddComment[];
+  comments: Icomment[];
   isFetching: boolean;
   isLoading: boolean;
   error: any;

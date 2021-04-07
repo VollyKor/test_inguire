@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { Ipost, InewPost, IpostWithComments, IaddComment } from './interfaces';
+import {
+  Ipost,
+  InewPost,
+  IpostWithComments,
+  IaddComment,
+  Icomment,
+  Tid,
+} from './interfaces';
 
 //  there few different methods
 //  with async/await
@@ -19,8 +26,8 @@ export const getAllPosts = (): Promise<Ipost[]> =>
       throw new Error(e.message);
     });
 
-export const getPostById = async (id: string): Promise<IpostWithComments> => {
-  const post = await req.post(`/posts/${id}?_embed=comments`);
+export const getPostById = async (id: Tid): Promise<IpostWithComments> => {
+  const post = await req.get(`/posts/${id}?_embed=comments`);
   return post.data;
 };
 
@@ -51,9 +58,11 @@ export const removePost = async (id: string): Promise<void> => {
   }
 };
 
-export const addComment = async (newComment: IaddComment): Promise<void> => {
+export const addComment = async (
+  newComment: IaddComment,
+): Promise<Icomment> => {
   try {
-    const res = await req.post(`/coments`, newComment);
+    const res = await req.post(`/comments`, newComment);
     return res.data;
   } catch (e) {
     throw new Error(e.message);

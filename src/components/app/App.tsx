@@ -4,8 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Hero from '../Hero/Hero';
 import NavBar from '../NavBar/NavBar';
 import Posts from '../Posts/Posts';
-import Footer from '../Footer/Footer';
-import OnePost from '../OnePost/OnsePost';
+// import Footer from '../Footer/Footer';
 
 // React.FunctionComponent<Props> = (props: Props) => (
 // const Component: React.SFC<Props> = (props: Props) => (
@@ -21,10 +20,10 @@ function App(): JSX.Element {
           <Posts />
         </Route>
         <Route path="/post/:postId">
-          <OnePost />
+          <div>Another Page</div>
         </Route>
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

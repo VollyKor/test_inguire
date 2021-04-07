@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axios as req, constants as c } from 'helpers';
-import { Ipost } from 'helpers/interfaces';
+import { IaddComment, Ipost, Tid } from 'helpers/interfaces';
 
 export const fetchPosts = createAsyncThunk(c.RgetAllPosts, async () => {
   try {
@@ -13,9 +13,10 @@ export const fetchPosts = createAsyncThunk(c.RgetAllPosts, async () => {
 
 export const fetchPostById = createAsyncThunk(
   c.RgetPostById,
-  async (id: string) => {
+  async (id: Tid) => {
     try {
       const post = await req.getPostById(id);
+      console.log(post);
       return post;
     } catch (error) {
       throw error.message;
@@ -55,6 +56,18 @@ export const fetchDeletePost = createAsyncThunk(
       await req.removePost(id);
       console.log('post deleted');
       return id;
+    } catch (error) {
+      throw error.message;
+    }
+  },
+);
+
+export const fetchAddComment = createAsyncThunk(
+  c.RaddComment,
+  async (id: IaddComment) => {
+    try {
+      const newComment = await req.addComment(id);
+      return newComment;
     } catch (error) {
       throw error.message;
     }
