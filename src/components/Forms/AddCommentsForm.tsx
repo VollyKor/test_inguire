@@ -6,7 +6,7 @@ import { fetchAddComment } from '../../redux/posts/posts-operations';
 interface Iprops {
   postId: Tid;
 }
-export default function AddCommentsForm({ postId }: Iprops) {
+export default function AddCommentsForm({ postId }: Iprops): JSX.Element {
   const [comment, setComment] = useState('');
   const dispatch = useAppDispatch();
   const commentId = 'comment';

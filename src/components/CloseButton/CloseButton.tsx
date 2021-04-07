@@ -1,5 +1,5 @@
 import { AiFillCloseCircle } from 'react-icons/ai';
-import s from './CloseButton.module.scss';
+import s from './CloseButton.module.css';
 
 interface IProps {
   onClose: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;

@@ -1,7 +1,6 @@
 import { createPortal } from 'react-dom';
-// import { useEffect } from 'react';
 import React from 'react';
-import s from './Modal.module.scss';
+import s from './Modal.module.css';
 import CloseButton from '../CloseButton/CloseButton';
 
 const modalRoot = document.querySelector('#modalRoot') as HTMLElement;
@@ -11,16 +10,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-function handleEsc(e: React.KeyboardEvent<HTMLDivElement>) {
-  console.log(e.code);
-}
-
 export default function Modal({ onClose, children }: Props) {
-  // useEffect(() => {
-  //   window.addEventListener('keydown', handleEsc);
-  //   return () => document.removeEventListener('keydown', handleEsc);
-  // });
-
   function onBackdropClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (e.target === e.currentTarget) {
       onClose();
@@ -29,11 +19,13 @@ export default function Modal({ onClose, children }: Props) {
 
   return createPortal(
     <div
-      role="button"
+      role="textbox"
       tabIndex={0}
       className={s.backdrop}
       onClick={onBackdropClick}
-      onKeyDown={e => handleEsc(e)}
+      onKeyDown={e => {
+        console.log(e);
+      }}
     >
       <div className={s.wrapper}>
         <CloseButton onClose={() => onClose()} />

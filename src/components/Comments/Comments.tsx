@@ -15,19 +15,15 @@ export default function Comments({ postId }: Iprops) {
     dispatch(fetchPostById(postId));
   }, [dispatch, postId]);
 
-  return (
-    <div>
-      <ul>
-        {comments &&
-          comments.map(e => {
-            console.log(e);
-            return (
-              <li key={e.id}>
-                <p>{e.body}</p>
-              </li>
-            );
-          })}
-      </ul>
-    </div>
-  );
+  return comments ? (
+    <ul>
+      {comments.map(e => {
+        return (
+          <li key={e.id}>
+            <p>{e.body}</p>
+          </li>
+        );
+      })}
+    </ul>
+  ) : null;
 }

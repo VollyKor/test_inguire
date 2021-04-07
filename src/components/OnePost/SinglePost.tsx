@@ -14,8 +14,9 @@ interface Iprops {
 export default function SinglePost(props: Iprops): JSX.Element {
   const { post, handleUpdate, handleDelete } = props;
 
-  const [isModalshown, setisModalshown] = useState(false);
+  const [isAddCommentFormShown, setIsAddCommentFormShown] = useState(false);
   const [isCommentsShown, setIsCommentsShown] = useState(false);
+  const [isModalShown, setIsModalShown] = useState(false);
 
   function HandleShowComments() {
     setIsCommentsShown(!isCommentsShown);
@@ -27,7 +28,13 @@ export default function SinglePost(props: Iprops): JSX.Element {
         <h2>{post.title}</h2>
         <p style={{ margin: '0px' }}>{post.body}</p>
         <div style={{ position: 'absolute', top: '5px', right: '5px' }}>
-          <button type="button" onClick={() => handleUpdate(post)}>
+          <button
+            type="button"
+            onClick={() => {
+              handleUpdate(post);
+              setIsModalShown(!isModalShown);
+            }}
+          >
             Update
           </button>
           <button
@@ -47,17 +54,19 @@ export default function SinglePost(props: Iprops): JSX.Element {
           <button
             style={{ marginLeft: '5px' }}
             type="button"
-            onClick={() => setisModalshown(!isModalshown)}
+            onClick={() => setIsAddCommentFormShown(!isAddCommentFormShown)}
           >
-            {isModalshown ? 'Close form' : 'Add Comment'}
+            {isAddCommentFormShown ? 'Close form' : 'Add Comment'}
           </button>
         </div>
-        {isModalshown && <AddCommentsForm postId={post.id} />}
+        {isAddCommentFormShown && <AddCommentsForm postId={post.id} />}
         {isCommentsShown && <Comments postId={post.id} />}
       </div>
-      <Modal onclose={}>
-        <UpdatePostForm />
-      </Modal>
+      {isModalShown && (
+        <Modal onClose={() => setIsModalShown(!isModalShown)}>
+          <UpdatePostForm />
+        </Modal>
+      )}
     </>
   );
 }
