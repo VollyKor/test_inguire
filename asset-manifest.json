@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/test_inguire/static/css/main.bf01fe70.chunk.css",
+    "main.js": "/test_inguire/static/js/main.1f3aa46a.chunk.js",
+    "main.js.map": "/test_inguire/static/js/main.1f3aa46a.chunk.js.map",
+    "runtime-main.js": "/test_inguire/static/js/runtime-main.c785014e.js",
+    "runtime-main.js.map": "/test_inguire/static/js/runtime-main.c785014e.js.map",
+    "static/js/2.772e9149.chunk.js": "/test_inguire/static/js/2.772e9149.chunk.js",
+    "static/js/2.772e9149.chunk.js.map": "/test_inguire/static/js/2.772e9149.chunk.js.map",
+    "index.html": "/test_inguire/index.html",
+    "static/css/main.bf01fe70.chunk.css.map": "/test_inguire/static/css/main.bf01fe70.chunk.css.map",
+    "static/js/2.772e9149.chunk.js.LICENSE.txt": "/test_inguire/static/js/2.772e9149.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/test_inguire/static/media/blue-sky.a7cb18d6.jpg",
+    "static/media/climbing.a7f4d5e8.jpg": "/test_inguire/static/media/climbing.a7f4d5e8.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c785014e.js",
+    "static/js/2.772e9149.chunk.js",
+    "static/css/main.bf01fe70.chunk.css",
+    "static/js/main.1f3aa46a.chunk.js"
+  ]
+}
