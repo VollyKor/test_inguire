@@ -1,0 +1,44 @@
+.list {
+  list-style: none;
+}
+.text {
+  margin: 0;
+  padding: 3px;
+  border-radius: 3px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.item ::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 15px;
+  border-radius: 50%;
+  background-color: blue;
+}
+
+.item:not(:last-child) {
+  margin: 5px;
+}
+
+.item:nth-child(3n) {
+  margin-left: 40px;
+}
+.item:nth-child(3n-1) {
+  margin-left: 30px;
+}
+.item:nth-child(3n-2) {
+  margin-left: 20;
+}
+
+.title {
+  text-align: center;
+}

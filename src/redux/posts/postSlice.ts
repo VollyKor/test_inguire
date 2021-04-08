@@ -96,7 +96,7 @@ const postSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchAddComment.fulfilled, (state: Istate, { payload }) => {
-        state.comments.push(payload);
+        state.comments.unshift(payload);
       })
       .addCase(fetchAddComment.rejected, (state: Istate, { payload }) => {
         console.log(payload);

@@ -13,12 +13,15 @@
 .icon {
   width: 25px;
   height: 25px;
-  fill: var(--primary-color-text);
+  fill: orange;
   background-color: grey;
   border-radius: 50%;
+  z-index: 10;
+  border: 3px solid transparent;
 }
 .icon:hover,
 .icon:focus {
-  fill: var(--primary-color);
-  background-color: var(--primary-color-text);
+  fill: red;
+  border-color: orange;
+  background-color: white;
 }

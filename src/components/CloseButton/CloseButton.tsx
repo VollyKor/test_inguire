@@ -13,7 +13,7 @@ export default function CloseButton({ onClose }: IProps): JSX.Element {
       onClick={onClose}
       className={s.btn}
     >
-      <AiFillCloseCircle className={s.icon} />
+      <AiFillCloseCircle className={s.icon} color="#e69346" />
     </button>
   );
 }

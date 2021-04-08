@@ -6,7 +6,8 @@ import {
   fetchPosts,
 } from '../../redux/posts/posts-operations';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import OnePost from '../OnePost/SinglePost';
+import OnePost from '../SinglePost/SinglePost';
+import s from './Posts.module.css';
 
 export default function Posts(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -22,9 +23,9 @@ export default function Posts(): JSX.Element {
   }
   return (
     <>
-      <ul style={{ listStyle: 'none' }}>
+      <ul className={s.list}>
         {posts.map(e => (
-          <li key={e.id}>
+          <li className={s.item} key={e.id}>
             <OnePost post={e} handleDelete={handleDelete} />
           </li>
         ))}

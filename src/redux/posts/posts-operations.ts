@@ -16,7 +16,6 @@ export const fetchPostById = createAsyncThunk(
   async (id: Tid) => {
     try {
       const post = await req.getPostById(id);
-      console.log(post);
       return post;
     } catch (error) {
       throw error.message;

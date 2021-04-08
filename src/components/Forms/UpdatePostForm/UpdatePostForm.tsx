@@ -2,6 +2,7 @@ import { Ipost } from 'helpers/interfaces';
 import { useState } from 'react';
 import { useAppDispatch } from 'redux/hooks';
 import { fetchUpdatePost } from 'redux/posts/posts-operations';
+import s from './UpdatePostForm.module.css';
 
 interface Iprops {
   postObj: Ipost;
@@ -17,8 +18,8 @@ export default function UpdatePostForm({
 
   const dispatch = useAppDispatch();
 
-  const titleId = 'title';
-  const bodyId = 'body';
+  const titleId = 'title1';
+  const bodyId = 'body1';
 
   function handlesubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -33,28 +34,24 @@ export default function UpdatePostForm({
   }
 
   return (
-    <form style={{ padding: '15px' }} onSubmit={e => handlesubmit(e)}>
-      <label
-        htmlFor={titleId}
-        style={{ display: 'block', marginBottom: '10px' }}
-      >
-        <span style={{ display: 'block', marginBottom: '10px' }}>Title</span>
+    <form className={s.form} onSubmit={e => handlesubmit(e)}>
+      <label htmlFor={titleId} className={s.label}>
+        <span className={s.text}>Title</span>
         <input
           type="text"
           value={title}
           onChange={e => {
             setTitle(e.target.value);
           }}
+          className={s.input}
           id={titleId}
         />
       </label>
 
-      <label
-        htmlFor={bodyId}
-        style={{ display: 'block', marginBottom: '10px' }}
-      >
-        <span style={{ display: 'block', marginBottom: '10px' }}>Text</span>
+      <label htmlFor={bodyId} className={s.label}>
+        <span className={s.text}>Text</span>
         <textarea
+          className={s.textarea}
           value={body}
           id={bodyId}
           style={{ resize: 'none' }}
@@ -63,7 +60,18 @@ export default function UpdatePostForm({
           }}
         />
       </label>
-      <button type="submit">Save changes</button>
+      <div className={s.wrapper}>
+        <button className={s.button} type="submit">
+          Save changes
+        </button>
+        <button
+          className={s.buttonClose}
+          type="button"
+          onClick={() => onClose()}
+        >
+          Close
+        </button>
+      </div>
     </form>
   );
 }
