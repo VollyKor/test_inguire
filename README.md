@@ -14,3 +14,6 @@
 скрипты:
 npm start : Локальная разработка 
 npm run deploy : Деплой на домашнюю страницу 
+
+ветка под gh-pages --> master & gh-pages
+основная ветка под  netlify -->  Add-page-with-single-users
