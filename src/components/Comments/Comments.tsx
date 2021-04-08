@@ -9,7 +9,7 @@ interface Iprops {
   postId: Tid;
 }
 
-export default function Comments({ postId }: Iprops) {
+export default function Comments({ postId }: Iprops): JSX.Element {
   const comments = useAppSelector(state => getCommentPostById(postId, state));
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -31,5 +31,7 @@ export default function Comments({ postId }: Iprops) {
         })}
       </ul>
     </>
-  ) : null;
+  ) : (
+    <div style={{ display: 'none' }}>1</div>
+  );
 }

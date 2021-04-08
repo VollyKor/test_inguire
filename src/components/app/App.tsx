@@ -15,7 +15,6 @@ function App(): JSX.Element {
   console.log(location);
 
   return (
-    // Suspense
     <Container>
       <NavBar />
       <Switch>
