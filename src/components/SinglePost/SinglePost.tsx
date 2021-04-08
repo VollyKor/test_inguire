@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Ipost, Tid } from 'helpers/interfaces';
 import AddCommentsForm from 'components/Forms/AddCommentsForm/AddCommentsForm';
 import Button from 'components/Button/Button';
+import { Link } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import UpdatePostForm from '../Forms/UpdatePostForm/UpdatePostForm';
 import Comments from '../Comments/Comments';
@@ -14,7 +15,7 @@ interface Iprops {
 
 export default function SinglePost(props: Iprops): JSX.Element {
   const { post, handleDelete } = props;
-
+  // const { pathname } = useLocation();
   const [isAddCommentFormShown, setIsAddCommentFormShown] = useState(false);
   const [isCommentsShown, setIsCommentsShown] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
@@ -24,44 +25,50 @@ export default function SinglePost(props: Iprops): JSX.Element {
   }
 
   return (
-    <div className={s.wrapper}>
-      <h2 className={s.title}>{post.title}</h2>
-      <p className={s.text}>{post.body}</p>
-      <div className={s.buttonGroup}>
-        <Button
-          onClick={() => {
-            setIsModalShown(!isModalShown);
-          }}
-        >
-          Update
-        </Button>
-        <Button onClick={() => handleDelete(post.id)}>Delete</Button>
-        <Button onClick={() => HandleShowComments()}>
-          {isCommentsShown ? 'Hide comments' : 'Show Comments'}
-        </Button>
-        <Button
-          onClick={() => setIsAddCommentFormShown(!isAddCommentFormShown)}
-        >
-          {isAddCommentFormShown ? 'Close form' : 'Add Comment'}
-        </Button>
-      </div>
+    <>
+      <div className={s.wrapper}>
+        <h2 className={s.title}>{post.title}</h2>
+        <p className={s.text}>{post.body}</p>
+        <div className={s.buttonGroup}>
+          <Link to={`posts/${post.id}`} className={s.button}>
+            Link to another page
+          </Link>
 
-      {isAddCommentFormShown && (
-        <AddCommentsForm
-          postId={post.id}
-          onClose={() => setIsAddCommentFormShown(false)}
-        />
-      )}
-      {isCommentsShown && <Comments postId={post.id} />}
+          <Button
+            onClick={() => {
+              setIsModalShown(!isModalShown);
+            }}
+          >
+            Update
+          </Button>
+          <Button onClick={() => handleDelete(post.id)}>Delete</Button>
+          <Button onClick={() => HandleShowComments()}>
+            {isCommentsShown ? 'Hide comments' : 'Show Comments'}
+          </Button>
+          <Button
+            onClick={() => setIsAddCommentFormShown(!isAddCommentFormShown)}
+          >
+            {isAddCommentFormShown ? 'Close form' : 'Add Comment'}
+          </Button>
+        </div>
 
-      {isModalShown && (
-        <Modal onClose={() => setIsModalShown(!isModalShown)}>
-          <UpdatePostForm
-            postObj={post}
-            onClose={() => setIsModalShown(!isModalShown)}
+        {isAddCommentFormShown && (
+          <AddCommentsForm
+            postId={post.id}
+            onClose={() => setIsAddCommentFormShown(false)}
           />
-        </Modal>
-      )}
-    </div>
+        )}
+        {isCommentsShown && <Comments postId={post.id} />}
+
+        {isModalShown && (
+          <Modal onClose={() => setIsModalShown(!isModalShown)}>
+            <UpdatePostForm
+              postObj={post}
+              onClose={() => setIsModalShown(!isModalShown)}
+            />
+          </Modal>
+        )}
+      </div>
+    </>
   );
 }

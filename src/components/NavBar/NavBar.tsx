@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import s from './NavBar.module.css';
 
 export default function NavBar(): JSX.Element {
@@ -5,12 +6,12 @@ export default function NavBar(): JSX.Element {
     <>
       <header className={s.header}>
         <nav className={s.nav}>
-          {/* <NavLink to="/" className={s.link} activeClassName={s.active} exact>
+          <NavLink to="/" className={s.link} activeClassName={s.active} exact>
             Main
           </NavLink>
           <NavLink to="/posts/" className={s.link} activeClassName={s.active}>
             Post
-          </NavLink> */}
+          </NavLink>
         </nav>
       </header>
     </>
