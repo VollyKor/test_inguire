@@ -6,7 +6,7 @@ import * as S from 'redux/posts/posts-selectors';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { Tid } from 'helpers/interfaces';
 import { fetchDeletePost, fetchPostById } from 'redux/posts/posts-operations';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import UpdatePostForm from '../Forms/UpdatePostForm/UpdatePostForm';
 import Comments from '../Comments/Comments';
@@ -21,6 +21,7 @@ export default function SinglePost(): JSX.Element {
   const [isCommentsShown, setIsCommentsShown] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
   const params: Iparams = useParams();
+  const history = useHistory();
 
   let id: Tid = '';
   if (params.postId) {
@@ -57,7 +58,14 @@ export default function SinglePost(): JSX.Element {
         >
           Update
         </Button>
-        <Button onClick={() => handleDelete(post.id)}>Delete</Button>
+        <Button
+          onClick={() => {
+            handleDelete(post.id);
+            history.push('/');
+          }}
+        >
+          Delete
+        </Button>
         <Button onClick={() => HandleShowComments()}>
           {isCommentsShown ? 'Hide comments' : 'Show Comments'}
         </Button>

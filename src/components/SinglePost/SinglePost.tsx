@@ -29,11 +29,10 @@ export default function SinglePost(props: Iprops): JSX.Element {
       <div className={s.wrapper}>
         <h2 className={s.title}>{post.title}</h2>
         <p className={s.text}>{post.body}</p>
+        <Link to={`posts/${post.id}`} className={s.link}>
+          Open in another page
+        </Link>
         <div className={s.buttonGroup}>
-          <Link to={`posts/${post.id}`} className={s.button}>
-            Link to another page
-          </Link>
-
           <Button
             onClick={() => {
               setIsModalShown(!isModalShown);
