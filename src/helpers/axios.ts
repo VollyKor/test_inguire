@@ -50,7 +50,7 @@ export const updatePost = async (post: Ipost): Promise<Ipost> => {
   }
 };
 
-export const removePost = async (id: string): Promise<void> => {
+export const removePost = async (id: Tid): Promise<void> => {
   try {
     await req.delete(`/posts/${id}`);
   } catch (e) {

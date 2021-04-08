@@ -5,7 +5,7 @@ import Button from 'components/Button/Button';
 import * as S from 'redux/posts/posts-selectors';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { Tid } from 'helpers/interfaces';
-import { fetchPostById } from 'redux/posts/posts-operations';
+import { fetchDeletePost, fetchPostById } from 'redux/posts/posts-operations';
 import { useParams } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import UpdatePostForm from '../Forms/UpdatePostForm/UpdatePostForm';
@@ -20,9 +20,7 @@ export default function SinglePost(): JSX.Element {
   const [isAddCommentFormShown, setIsAddCommentFormShown] = useState(false);
   const [isCommentsShown, setIsCommentsShown] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
-  // const match = useRouteMatch();
   const params: Iparams = useParams();
-  console.log(params);
 
   let id: Tid = '';
   if (params.postId) {
@@ -44,7 +42,7 @@ export default function SinglePost(): JSX.Element {
   }
 
   function handleDelete(postId: Tid) {
-    console.log('delete ', postId);
+    dispatch(fetchDeletePost(postId));
   }
 
   return post ? (

@@ -1,6 +1,5 @@
 {
   "name": "test_task_inquire",
-  "homepage": "https://vollykor.github.io/test_inguire/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

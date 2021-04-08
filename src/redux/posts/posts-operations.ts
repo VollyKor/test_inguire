@@ -50,7 +50,7 @@ export const fetchUpdatePost = createAsyncThunk(
 
 export const fetchDeletePost = createAsyncThunk(
   c.RdeletePost,
-  async (id: string) => {
+  async (id: Tid) => {
     try {
       await req.removePost(id);
       console.log('post deleted');
