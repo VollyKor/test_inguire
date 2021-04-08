@@ -40,8 +40,7 @@ const postSlice = createSlice({
         state.isLoading = false;
         state.posts = payload;
       })
-      .addCase(fetchPosts.rejected, (state: Istate, { payload }) => {
-        console.log(payload);
+      .addCase(fetchPosts.rejected, (state: Istate) => {
         state.isLoading = false;
         state.isLoading = true;
       })
@@ -53,8 +52,7 @@ const postSlice = createSlice({
       .addCase(fetchAddPost.fulfilled, (state: Istate, { payload }) => {
         state.posts.push(payload);
       })
-      .addCase(fetchAddPost.rejected, (state: Istate, { payload }) => {
-        console.log(payload);
+      .addCase(fetchAddPost.rejected, (state: Istate) => {
         state.isLoading = false;
       })
       // Update Post
@@ -71,8 +69,7 @@ const postSlice = createSlice({
         });
         state.posts = newPostsArray;
       })
-      .addCase(fetchUpdatePost.rejected, (state: Istate, { payload }) => {
-        console.log(payload);
+      .addCase(fetchUpdatePost.rejected, (state: Istate) => {
         state.isLoading = false;
       })
       // Delete Post
@@ -81,13 +78,10 @@ const postSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchDeletePost.fulfilled, (state: Istate, { payload: id }) => {
-        console.log('slice', id);
-
         const newPostsArray = state.posts.filter(e => e.id !== id);
         state.posts = newPostsArray;
       })
-      .addCase(fetchDeletePost.rejected, (state: Istate, { payload }) => {
-        console.log(payload);
+      .addCase(fetchDeletePost.rejected, (state: Istate) => {
         state.isLoading = false;
       })
       // add Comments
@@ -98,8 +92,7 @@ const postSlice = createSlice({
       .addCase(fetchAddComment.fulfilled, (state: Istate, { payload }) => {
         state.comments.unshift(payload);
       })
-      .addCase(fetchAddComment.rejected, (state: Istate, { payload }) => {
-        console.log(payload);
+      .addCase(fetchAddComment.rejected, (state: Istate) => {
         state.isLoading = false;
       })
       // get Comments by Id
@@ -110,8 +103,7 @@ const postSlice = createSlice({
       .addCase(fetchPostById.fulfilled, (state: Istate, { payload }) => {
         state.comments = payload.comments;
       })
-      .addCase(fetchPostById.rejected, (state: Istate, { payload }) => {
-        console.log(payload);
+      .addCase(fetchPostById.rejected, (state: Istate) => {
         state.isLoading = false;
       });
   },

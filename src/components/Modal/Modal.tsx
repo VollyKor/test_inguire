@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function Modal({ onClose, children }: Props) {
+export default function Modal({ onClose, children }: Props): React.ReactPortal {
   function onBackdropClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (e.target === e.currentTarget) {
       onClose();
@@ -24,6 +24,7 @@ export default function Modal({ onClose, children }: Props) {
       className={s.backdrop}
       onClick={onBackdropClick}
       onKeyDown={() => {
+        // eslint-disable-next-line no-console
         console.log();
       }}
     >

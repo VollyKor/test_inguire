@@ -39,8 +39,7 @@ export const fetchUpdatePost = createAsyncThunk(
   c.RupdatePostById,
   async (updatedPostObj: Ipost) => {
     try {
-      const updatedPost = await req.updatePost(updatedPostObj);
-      console.log('post-updated', updatedPost);
+      await req.updatePost(updatedPostObj);
       return updatedPostObj;
     } catch (error) {
       throw error.message;
@@ -53,7 +52,6 @@ export const fetchDeletePost = createAsyncThunk(
   async (id: Tid) => {
     try {
       await req.removePost(id);
-      console.log('post deleted');
       return id;
     } catch (error) {
       throw error.message;
